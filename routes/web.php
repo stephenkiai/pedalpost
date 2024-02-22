@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Home\HomeController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Author\AuthorController;
 use App\Http\Controllers\Editor\EditorController;
@@ -19,9 +20,14 @@ use App\Http\Controllers\GuestAuthor\GuestAuthorController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
+/* open Routes to all users */
+Route::get('/', [HomeController::class, 'index'])->name('home.index');
+Route::get('/about', [HomeController::class, 'about'])->name('home.about');
+Route::get('/gallery', [HomeController::class, 'gallery'])->name('home.gallery');
+Route::get('/contact', [HomeController::class, 'contact'])->name('home.contact');
+
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');
