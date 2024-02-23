@@ -1,5 +1,7 @@
-<body class="handheld-toolbar-enabled">
+@extends('front.layouts.app')
 
+
+@section('content')
     <!-- Sign in / sign up modal--
     <div class="modal fade" id="signin-modal" tabindex="-1" role="dialog">
       <div class="modal-dialog modal-dialog-centered" role="document">
@@ -73,9 +75,6 @@
 
 
     <main class="page-wrapper">
-      <!-- Navbar 3 Level (Light)-->
-        
-
       <!-- Blog Title -->
       <div class="py-5 bg-dark border-bottom mb-4">
         <div class="container">
@@ -344,4 +343,4 @@
         </div>
     </main>
 
-  </body>
+  @endsection

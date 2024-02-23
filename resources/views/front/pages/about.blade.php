@@ -1,8 +1,8 @@
-@extends('front.main')
+@extends('front.layouts.app')
 
 
-@section('title')
-<!-- Blog Title -->
+@section('content')
+<!-- About-Us Title -->
 <div class="py-5 bg-dark border-bottom mb-4">
     <div class="container">
         <div class="text-center my-5">
