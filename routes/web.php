@@ -45,12 +45,12 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
 
-    Route::get('/post', [PostController::class, 'index'])->name('post.index');
-    Route::get('/new-post', [PostController::class, 'create'])->name('post.create');
-    Route::post('/save-post', [PostController::class, 'store'])->name('post.store');
-    Route::get('/edit-post', [PostController::class, 'edit'])->name('post.edit');
-    Route::put('/update-post/{post}', [PostController::class, 'update'])->name('post.update');
-    Route::get('/delete-post', [PostController::class, 'destroy'])->name('post.delete');
+    Route::get('/posts', [PostController::class, 'index'])->name('post.index');
+    Route::get('/posts/new', [PostController::class, 'create'])->name('post.create');
+    Route::post('/posts/save', [PostController::class, 'store'])->name('post.store');
+    Route::get('/posts/{post}/edit', [PostController::class, 'edit'])->name('post.edit');
+    Route::put('/posts/{post}', [PostController::class, 'update'])->name('post.update');
+    Route::get('/posts/{post}/delete', [PostController::class, 'destroy'])->name('post.delete');
 
 
     Route::get('/category', [CategoryController::class, 'index'])->name('category.index');
@@ -58,7 +58,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/save-category', [CategoryController::class, 'store'])->name('category.store');
     Route::get('/categories/{category}/edit', [CategoryController::class, 'edit'])->name('category.edit');
     Route::put('/categories/{category}', [CategoryController::class, 'update'])->name('category.update');
-    Route::post('/delete-category', [CategoryController::class, 'destroy'])->name('category.delete');
+    Route::post('/categories/{category}/delete', [CategoryController::class, 'destroy'])->name('category.delete');
 });
 
 

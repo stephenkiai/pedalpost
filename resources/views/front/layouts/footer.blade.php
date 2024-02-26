@@ -1,5 +1,5 @@
 <!-- Footer-->
-<footer class="footer bg-dark pt-5">
+<footer class="footer bg-accent pt-5">
     <div class="container">
       <div class="row pb-2">
         <div class="col-md-4 col-sm-6">
@@ -58,4 +58,4 @@
     </div>
     </div>
   </footer>
- 
+

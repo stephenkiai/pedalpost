@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>{{ config('app.name') }}</title>
+        <title>@yield('pageTitle')</title>
 
     <!-- SEO Meta Tags-->
     <meta name="description" content="PedalPost-Explore the latest cycling gear, training tips, and
@@ -15,6 +15,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Vendor Styles including: Font Icons, Plugins, etc.-->
+    <meta name="theme-color" content="#ffffff">
     <link rel="stylesheet" media="screen" href="{{ url('vendor/simplebar/dist/simplebar.min.css') }}"/>
     <link rel="stylesheet" media="screen" href="{{ url('vendor/tiny-slider/dist/tiny-slider.css') }}"/>
     <link rel="stylesheet" media="screen" href="{{ url('vendor/lightgallery/css/lightgallery-bundle.min.css') }}"/>
@@ -22,13 +23,19 @@
     <link rel="stylesheet" media="screen" href="{{ url('css/theme.min.css') }}">
     <link rel="stylesheet" media="screen" href="{{ url('css/style.css') }}">
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- Scripts -->
+    @vite(['resources/js/app.js'])
 
   </head>
   <body class="handheld-toolbar-enabled">
   <!-- Body-->
     @include('front.layouts.header')
 
+
     @yield('content')
+
 
 
     @include('front.layouts.footer')
@@ -48,7 +55,7 @@
   <script src="vendor/lightgallery/lightgallery.min.js"></script>
   <script src="vendor/lightgallery/plugins/fullscreen/lg-fullscreen.min.js"></script>
   <script src="vendor/lightgallery/plugins/zoom/lg-zoom.min.js"></script>
-  <script src="vendor/lightgallery/plugins/video/lg-video.min.js"></script>
+
   <!-- Main theme script-->
   <script src="js/theme.min.js"></script>
 </body>
