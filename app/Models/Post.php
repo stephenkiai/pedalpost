@@ -14,8 +14,7 @@ class Post extends Model
         'post_content',
         'post_slug',
         'category_id',
-        'featured_image',
-        'active',
+        'featured_image'
     ];
 
     public function category()

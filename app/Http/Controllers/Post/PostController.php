@@ -38,8 +38,7 @@ class PostController extends Controller
             'post_content' => 'required',
             'post_slug' => 'required|string|unique:posts',
             'category_id' => 'required|exists:categories,id',
-            'featured_image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'active' => 'boolean',
+            'featured_image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048'
         ]);
 
         // Create a new Post instance with the validated data
@@ -48,18 +47,18 @@ class PostController extends Controller
         $post->post_content = $request->post_content;
         $post->post_slug = $request->post_slug;
         $post->category_id = $request->category_id;
-        $post->active = $request->active;
+
 
         // Handle featured image upload if provided
         if ($request->hasFile('featured_image')) {
-            $imagePath = $request->file('featured_image')->store('images');
+            $imagePath = $request->file('featured_image')->store('images/post');
             $post->featured_image = $imagePath;
         }
 
         $post->save();
 
         // Redirect
-        return redirect()->route('posts.index')->with('success', 'Post created successfully');
+        return redirect()->route('post.index')->with('success', 'Post created successfully');
     }
 
     /**
