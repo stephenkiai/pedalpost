@@ -3,9 +3,11 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Home\HomeController;
+use App\Http\Controllers\Post\PostController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Author\AuthorController;
 use App\Http\Controllers\Editor\EditorController;
+use App\Http\Controllers\Category\CategoryController;
 use App\Http\Controllers\Contributor\ContributorController;
 use App\Http\Controllers\GuestAuthor\GuestAuthorController;
 
@@ -33,10 +35,30 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
+Route::get('/dashboard1', function () {
+    return view('front.account.dashboard1');
+})->middleware(['auth', 'verified'])->name('dashboard1');
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+
+    Route::get('/post', [PostController::class, 'index'])->name('post.index');
+    Route::get('/new-post', [PostController::class, 'create'])->name('post.create');
+    Route::post('/save-post', [PostController::class, 'store'])->name('post.store');
+    Route::get('/edit-post', [PostController::class, 'edit'])->name('post.edit');
+    Route::put('/update-post/{post}', [PostController::class, 'update'])->name('post.update');
+    Route::get('/delete-post', [PostController::class, 'destroy'])->name('post.delete');
+
+
+    Route::get('/category', [CategoryController::class, 'index'])->name('category.index');
+    Route::get('/new-category', [CategoryController::class, 'create'])->name('category.create');
+    Route::post('/save-category', [CategoryController::class, 'store'])->name('category.store');
+    Route::get('/categories/{category}/edit', [CategoryController::class, 'edit'])->name('category.edit');
+    Route::put('/categories/{category}', [CategoryController::class, 'update'])->name('category.update');
+    Route::post('/delete-category', [CategoryController::class, 'destroy'])->name('category.delete');
 });
 
 
