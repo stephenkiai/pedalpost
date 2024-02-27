@@ -3,9 +3,10 @@
 namespace App\Http\Controllers\Post;
 
 use App\Models\Post;
+use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\Category;
+use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller
 {
@@ -14,7 +15,22 @@ class PostController extends Controller
      */
     public function index()
     {
-        return view('front.account.post_list');
+        // Retrieve blog posts belonging to the logged-in user
+        $posts = Post::where('user_id', auth()->id())->paginate(5);
+        //dd($posts);
+
+        return view('front.account.post_list')->with('posts', $posts);
+    }
+
+    /**
+     * Display all posts to home page
+     */
+    public function all()
+    {
+        // Retrieve all posts from the database
+        $posts = Post::all();
+
+        return view('front.account.post_all')->with('posts', $posts);
     }
 
     /**
@@ -48,10 +64,12 @@ class PostController extends Controller
         $post->post_slug = $request->post_slug;
         $post->category_id = $request->category_id;
 
+        // Set the user_id to the authenticated user's id
+        $post->user_id = Auth::id();
 
         // Handle featured image upload if provided
         if ($request->hasFile('featured_image')) {
-            $imagePath = $request->file('featured_image')->store('images/post');
+            $imagePath = $request->file('featured_image')->store('images');
             $post->featured_image = $imagePath;
         }
 
@@ -66,7 +84,7 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        return view('front.account.post{post-id}');
+        return view('front.pages.singlepost');
     }
 
     /**
@@ -74,22 +92,58 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        return view('front.account.edit{post-id}');
+        //retrieve all categories
+        $categories = Category::all(['id', 'category_name']);
+
+        //dd($post);
+        return view('front.account.post_edit')->with('post', $post)->with('categories', $categories);
     }
 
     /**
      * Update the specified resource in storage.
      */
     public function update(Request $request, Post $post)
-    {
-        //
+{
+    // Validate the request data
+    $validatedData = $request->validate([
+        'post_title' => 'required|string|max:255',
+        'post_content' => 'required|string',
+        'post_slug' => 'required|string|unique:posts,post_slug,' . $post->id,
+        'category_id' => 'required|exists:categories,id',
+        'featured_image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+
+    ]);
+
+    // Update the post with the validated data
+    $post->update([
+        'post_title' => $validatedData['post_title'],
+        'post_content' => $validatedData['post_content'],
+        'post_slug' => $validatedData['post_slug'],
+        'category_id' => $validatedData['category_id'],
+
+    ]);
+
+    // Handle featured image upload
+    if ($request->hasFile('featured_image')) {
+        $imagePath = $request->file('featured_image')->store('images');
+        $post->featured_image = $imagePath;
+        $post->save();
     }
+
+    return redirect()->route('post.index')->with('success', 'Post updated successfully.');
+}
+
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Post $post)
+    public function destroy(Request $request, Post $post)
     {
-        //
+        $this->authorize('delete', $post);
+
+        // Delete the post
+        $post->delete();
+
+        return redirect()->route('post.index')->with('success', 'Post deleted successfully.');
     }
 }

@@ -46,7 +46,9 @@ Route::middleware('auth')->group(function () {
 
 
     Route::get('/posts', [PostController::class, 'index'])->name('post.index');
+    Route::get('/posts/all', [PostController::class, 'all'])->name('post.all');
     Route::get('/posts/new', [PostController::class, 'create'])->name('post.create');
+    Route::get('/posts/show', [PostController::class, 'show'])->name('post.show');
     Route::post('/posts/save', [PostController::class, 'store'])->name('post.store');
     Route::get('/posts/{post}/edit', [PostController::class, 'edit'])->name('post.edit');
     Route::put('/posts/{post}', [PostController::class, 'update'])->name('post.update');

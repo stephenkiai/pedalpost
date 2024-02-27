@@ -14,11 +14,17 @@ class Post extends Model
         'post_content',
         'post_slug',
         'category_id',
-        'featured_image'
+        'featured_image',
+        'user_id'
     ];
 
     public function category()
     {
         return $this->belongsTo(Category::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 }

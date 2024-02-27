@@ -64,7 +64,7 @@
                         </div>
 
                         <div class="mb-3">
-                            <label class="form-label">Category Id</label>
+                            <label class="form-label">Category Id(select category to autofill)</label>
                             <input class="form-control" name="category_id" rows="6" id="category_id" placeholder="Category id">
                         </input>
                         </div>
