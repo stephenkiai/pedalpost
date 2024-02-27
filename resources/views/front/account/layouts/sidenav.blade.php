@@ -16,16 +16,28 @@
                 <h3 class="fs-sm mb-0 text-muted">Dashboard</h3>
             </div>
             <div>
-                    <ul class="list-unstyled mb-0">
+                <ul class="list-unstyled mb-0">
+                        <li class="border-bottom mb-0">
+                            <a class="nav-link-style d-flex align-items-center px-4 py-3" href="{{ route('dashboard1') }}">
+                                <i class="ci-dollar opacity-60 me-2"></i>Home
+                            </a>
+                        </li>
+
+
+                    <!-- link for admin only-->
+                    @if(auth()->user()->role === 'admin')
                         <li class="border-bottom mb-0">
                             <a class="nav-link-style d-flex align-items-center px-4 py-3" href="{{ url('') }}">
                                 <i class="ci-dollar opacity-60 me-2"></i>All Users
                             </a>
                         </li>
+                    @endif
 
+                    <!-- links for admin and editor only -->
+                    @if(auth()->user()->role === 'admin' || auth()->user()->role === 'editor')
                         <li class="border-bottom mb-0">
-                            <a class="nav-link-style d-flex align-items-center px-4 py-3" href="{{ route('post.index') }}">
-                                <i class="ci-dollar opacity-60 me-2"></i>My Posts
+                            <a class="nav-link-style d-flex align-items-center px-4 py-3" href="{{ route('post.all') }}">
+                                <i class="ci-dollar opacity-60 me-2"></i>All Posts
                             </a>
                         </li>
 
@@ -38,6 +50,14 @@
                         <li class="border-bottom mb-0">
                             <a class="nav-link-style d-flex align-items-center px-4 py-3" href="{{ route('category.create') }}">
                                 <i class="ci-package opacity-60 me-2"></i>Add New Category
+                            </a>
+                        </li>
+                    @endif
+
+                        <!--links for the rest of the gang -->
+                        <li class="border-bottom mb-0">
+                            <a class="nav-link-style d-flex align-items-center px-4 py-3" href="{{ route('post.index') }}">
+                                <i class="ci-dollar opacity-60 me-2"></i>My Posts
                             </a>
                         </li>
 
