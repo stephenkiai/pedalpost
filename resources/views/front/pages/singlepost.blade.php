@@ -50,7 +50,7 @@
             <h2>{{ $post->post_title }}</h2>
             <hr>
             <!-- Post content-->
-            <p>{{ $post->post_content }}</p>
+            <p>{!! $post->post_content !!}</p>
 
             <!-- Post category + sharing-->
             <div class="d-flex flex-wrap justify-content-between pt-2 pb-4 mb-1">

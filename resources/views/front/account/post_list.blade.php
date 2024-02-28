@@ -84,7 +84,7 @@
             </a>
             <div class="text-center text-sm-start">
                 <h3 class="h6 product-title mb-2"><a href="{{ route('post.show', $post->id) }}">{{ $post->post_title }}</a></h3>
-                <p>{{ substr($post->post_content, 0, 100) }}...</p>
+                <p>{!! substr($post->post_content, 0, 100) !!}...</p>
                 <!-- Buttons for actions (e.g., Edit, Delete) -->
                 <a href="{{ route('post.edit', $post->id) }}" class="btn bg-faded-info btn-icon me-2" type="button" data-bs-toggle="tooltip" title="Edit">
                     <i class="ci-edit text-info"></i>

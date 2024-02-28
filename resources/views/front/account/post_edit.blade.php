@@ -29,7 +29,7 @@
 
                     <div class="mb-3">
                         <label class="form-label">Edit Post content</label>
-                        <textarea class="form-control" name="post_content" rows="6" placeholder="Post content">{{ $post->post_content }}</textarea>
+                        <textarea class="form-control" name="post_content" rows="6" id="post_textarea" placeholder="Post content">{{ $post->post_content }}</textarea>
                     </div>
                 </div>
 
@@ -103,4 +103,15 @@
 
 
 </section>
+@endsection
+
+@section('scripts')
+<!--call method to display ckeditor-->
+<script>
+    ClassicEditor
+        .create( document.querySelector( '#post_textarea' ) )
+        .catch( error => {
+            console.error( error );
+        } );
+</script>
 @endsection

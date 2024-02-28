@@ -64,7 +64,7 @@
                             <h2 class="h6 blog-entry-title">
                                 <a href="{{ route('home.single', $post->id) }}">{{ $post->post_title }}</a>
                             </h2>
-                            <p class="fs-sm">{{ substr($post->post_content, 0, 100) }}</p>
+                            <p class="fs-sm">{!! substr($post->post_content, 100, 200) !!}</p>
 
                                 <a class="btn-tag me-2 mb-2" href="#">{{ $post->category->category_name }}</a>
 
@@ -112,7 +112,7 @@
                     </li>
                 </ul>
             </nav>
-            
+
         </section>
         <aside class="col-lg-4">
 

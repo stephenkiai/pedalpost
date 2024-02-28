@@ -51,6 +51,10 @@
       <script src="{{ url('vendor/chartist/dist/chartist.min.js') }}"></script>
       <!-- Main theme script-->
       <script src="{{ url('js/theme.min.js') }}"></script>
+      <!-- ckeditor cdn-->
+      <script src="https://cdn.ckeditor.com/ckeditor5/41.1.0/classic/ckeditor.js"></script>
+
+      @yield('scripts')
 </body>
 
   </html>
