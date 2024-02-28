@@ -36,12 +36,10 @@
                         <a href="{{ route('post.edit', $post->id) }}" class="btn btn-primary">Edit</a>
 
                         <!-- Delete Button -->
-                        <form method="POST" action="{{ route('post.delete', $post->id) }}" style="display: inline;">
+                        <form action="{{ route('post.delete', $post->id) }}" method="POST" style="display: inline;">
                             @csrf
                             @method('HEAD')
-                            <button class="btn bg-faded-danger btn-icon" type="submit" data-bs-toggle="tooltip" title="Delete">
-                                <i class="ci-trash text-danger"></i>
-                            </button>
+                            <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this post?')">Delete</button>
                         </form>
                     </td>
                 </tr>

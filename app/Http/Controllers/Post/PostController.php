@@ -7,6 +7,7 @@ use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
 {
@@ -15,11 +16,14 @@ class PostController extends Controller
      */
     public function index()
     {
+        // Retrieve the authenticated user
+        $user = Auth::user();
+
         // Retrieve blog posts belonging to the logged-in user
         $posts = Post::where('user_id', auth()->id())->paginate(5);
         //dd($posts);
 
-        return view('front.account.post_list')->with('posts', $posts);
+        return view('front.account.post_list')->with('posts', $posts)->with('user', $user);
     }
 
     /**
@@ -69,8 +73,13 @@ class PostController extends Controller
 
         // Handle featured image upload if provided
         if ($request->hasFile('featured_image')) {
-            $imagePath = $request->file('featured_image')->store('images');
-            $post->featured_image = $imagePath;
+            $imageFile = $request->file('featured_image');
+            $originalFileName = $imageFile->getClientOriginalName();
+            $extension = $imageFile->getClientOriginalExtension();
+            $storagePath = 'public/images';
+            $fileName = $originalFileName;
+            $imagePath = $imageFile->storeAs($storagePath, $fileName);
+            $post->featured_image = Storage::url($imagePath);
         }
 
         $post->save();
@@ -139,7 +148,8 @@ class PostController extends Controller
      */
     public function destroy(Request $request, Post $post)
     {
-        $this->authorize('delete', $post);
+        //dd($post);
+        //$this->authorize('delete', $post);
 
         // Delete the post
         $post->delete();

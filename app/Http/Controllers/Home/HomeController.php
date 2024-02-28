@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers\Home;
 
-use App\Http\Controllers\Controller;
+use App\Models\Post;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class HomeController extends Controller
 {
@@ -12,15 +13,22 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('front.home');
+        //retrieve posts for featured post section
+        $featuredPosts = Post::inRandomOrder()->limit(3)->get();
+        //dd($featuredPosts);
+
+        // Paginate posts.all
+        $posts = Post::paginate(10);
+
+        return view('front.home')->with('featuredPosts', $featuredPosts)->with('posts', $posts);
     }
 
     /**
      * Show the About-Us resource.
      */
-    public function about()
+    public function single_post()
     {
-        return view('front.pages.about');
+        return view('front.pages.singlepost');
     }
 
     /**

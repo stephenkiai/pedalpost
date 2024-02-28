@@ -29,7 +29,7 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-        if($request->user()->role === 'admin') {
+        /**if($request->user()->role === 'admin') {
             return redirect() ->route('admin.dashboard');
         }elseif ($request->user()->role === 'editor') {
             return redirect() ->route('editor.dashboard');
@@ -39,7 +39,7 @@ class AuthenticatedSessionController extends Controller
             return redirect() ->route('guest-author.dashboard');
         }elseif ($request->user()->role === 'contributor') {
             return redirect() ->route('contributor.dashboard');
-        }
+        }**/
 
         return redirect()->intended(RouteServiceProvider::HOME);
     }

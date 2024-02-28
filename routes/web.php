@@ -25,9 +25,13 @@ use App\Http\Controllers\GuestAuthor\GuestAuthorController;
 
 /* open Routes to all users */
 Route::get('/', [HomeController::class, 'index'])->name('home.index');
-Route::get('/about', [HomeController::class, 'about'])->name('home.about');
-Route::get('/gallery', [HomeController::class, 'gallery'])->name('home.gallery');
-Route::get('/contact', [HomeController::class, 'contact'])->name('home.contact');
+Route::get('/posts/{post}/show', [HomeController::class, 'single_post'])->name('home.single');
+Route::get('/about-us', [HomeController::class, 'about'])->name('home.about');
+Route::get('/our-team', [HomeController::class, 'team'])->name('home.team');
+Route::get('/careers', [HomeController::class, 'careers'])->name('home.careers');
+Route::get('/policy', [HomeController::class, 'policy'])->name('home.policy');
+Route::get('/user-terms', [HomeController::class, 'terms'])->name('home.terms');
+Route::get('/contact-us', [HomeController::class, 'contact'])->name('home.contact');
 
 
 
