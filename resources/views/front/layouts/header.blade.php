@@ -37,6 +37,10 @@
                         </div>
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <x-dropdown-link :href="route('dashboard1')">
+                            {{ __('Dashboard') }}
+                        </x-dropdown-link>
+
                         <x-dropdown-link :href="route('profile.edit')">
                             {{ __('Profile') }}
                         </x-dropdown-link>
