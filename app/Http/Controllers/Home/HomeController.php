@@ -24,11 +24,30 @@ class HomeController extends Controller
     }
 
     /**
-     * Show the About-Us resource.
+     * Show single post.
      */
-    public function single_post()
+    public function single_post($id)
     {
-        return view('front.pages.singlepost');
+        // Retrieve current post
+        $post = Post::findOrFail($id);
+
+        // Retrieve previous post
+        $previousPost = Post::where('id', '<', $post->id)->orderBy('id', 'desc')->first();
+
+        // Retrieve next post
+        $nextPost = Post::where('id', '>', $post->id)->orderBy('id', 'asc')->first();
+
+        // Pass the everything to the view
+        return view('front.pages.singlepost', [
+            'post' => $post,
+            'previousPost' => $previousPost,
+            'nextPost' => $nextPost,
+        ]);
+
+        // Retrieve post using the ID
+        //$post = Post::findOrFail($id);
+        //dd($post);
+        //return view('front.pages.singlepost')->with('post', $post);
     }
 
     /**
@@ -36,7 +55,7 @@ class HomeController extends Controller
      */
     public function gallery()
     {
-        return view('front.pages.gallery');
+        //
     }
 
     /**

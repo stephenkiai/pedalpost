@@ -27,12 +27,12 @@
             @foreach($featuredPosts as $post)
 
         <article>
-            <a class="blog-entry-thumb mb-3" href="{{ route('post.show', $post->id) }}">
+            <a class="blog-entry-thumb mb-3" href="{{ route('home.single', $post->id) }}">
                 <span class="blog-entry-meta-label fs-sm"><i class="ci-time"></i>{{ $post->created_at->format('M d') }}</span>
                 <img src="{{ asset($post->featured_image) }}" alt="post image">
             </a>
             <div class="d-flex justify-content-between mb-2 pt-1">
-                <h2 class="h5 blog-entry-title mb-0"><a href="{{ route('post.show', $post->id) }}">{{ $post->post_title }}</a></h2>
+                <h2 class="h5 blog-entry-title mb-0"><a href="{{ route('home.single', $post->id) }}">{{ $post->post_title }}</a></h2>
                 <a class="blog-entry-meta-link fs-sm text-nowrap ms-3 pt-1" href="{{ route('post.show', $post->id) }}#comments"><i class="ci-message"></i></a>
             </div>
             <div class="d-flex align-items-center fs-sm">
@@ -47,6 +47,7 @@
         </div>
     </div>
     <hr class="mt-5">
+
     <div class="row pt-5 mt-md-2">
 
         <!-- Entries grid-->
@@ -111,6 +112,7 @@
                     </li>
                 </ul>
             </nav>
+            
         </section>
         <aside class="col-lg-4">
 
@@ -151,12 +153,12 @@
                         <h3 class="widget-title">Trending posts</h3>
                         @foreach($trendingPosts as $post)
                             <div class="d-flex align-items-center mb-3">
-                                <a class="flex-shrink-0" href="{{ route('post.show', $post->id) }}">
+                                <a class="flex-shrink-0" href="{{ route('home.single', $post->id) }}">
                                     <img class="rounded" src="{{ asset($post->featured_image) }}" width="64" alt="Post image">
                                 </a>
                                 <div class="ps-3">
                                     <h6 class="blog-entry-title fs-sm mb-0">
-                                        <a href="{{ route('post.show', $post->id) }}">{{ $post->post_title }}</a>
+                                        <a href="{{ route('home.single', $post->id) }}">{{ $post->post_title }}</a>
                                     </h6>
                                     <span class="fs-ms text-muted">by <a href='#' class='blog-entry-meta-link'>{{ $post->user->name }}</a></span>
                                 </div>
@@ -167,13 +169,13 @@
                     <!-- Popular tags-->
                     <div class="widget pb-grid-gutter mx-lg-2">
                         <h3 class="widget-title">Popular tags</h3>
-                        <a class="btn-tag me-2 mb-2" href="#">#fashion</a>
-                        <a class="btn-tag me-2 mb-2" href="#">#gadgets</a>
-                        <a class="btn-tag me-2 mb-2" href="#">#online shopping</a>
-                        <a class="btn-tag me-2 mb-2" href="#">#top brands</a>
-                        <a class="btn-tag me-2 mb-2" href="#">#travel</a>
-                        <a class="btn-tag me-2 mb-2" href="#">#cartzilla news</a>
-                        <a class="btn-tag me-2 mb-2" href="#">#personal finance</a>
+                        <a class="btn-tag me-2 mb-2" href="#">#cyclist</a>
+                        <a class="btn-tag me-2 mb-2" href="#">#cycle</a>
+                        <a class="btn-tag me-2 mb-2" href="#">#bmx</a>
+                        <a class="btn-tag me-2 mb-2" href="#">#shimano</a>
+                        <a class="btn-tag me-2 mb-2" href="#">#gravel ride</a>
+                        <a class="btn-tag me-2 mb-2" href="#">#fitness</a>
+                        <a class="btn-tag me-2 mb-2" href="#">#bike repair</a>
                         <a class="btn-tag me-2 mb-2" href="#">#tips &amp; tricks</a>
                     </div>
 
@@ -183,7 +185,7 @@
                             <h5 class="mb-2">Your Ad Banner Here</h5>
                             <p class="fs-sm text-muted">Advertize with Us</p>
                             <p class="fs-sm text-muted">Hurry up to reserve your spot</p>
-                            <a class="btn btn-primary btn-shadow btn-sm" href="#">Contact us</a>
+                            <a class="btn btn-primary btn-shadow btn-sm" href="{{ route('home.contact') }}">Contact us</a>
                         </div>
                     </div>
                 </div>

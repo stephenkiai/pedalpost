@@ -134,9 +134,13 @@ class PostController extends Controller
 
     // Handle featured image upload
     if ($request->hasFile('featured_image')) {
-        $imagePath = $request->file('featured_image')->store('images');
-        $post->featured_image = $imagePath;
-        $post->save();
+        $imageFile = $request->file('featured_image');
+        $originalFileName = $imageFile->getClientOriginalName();
+        $extension = $imageFile->getClientOriginalExtension();
+        $storagePath = 'public/images';
+        $fileName = $originalFileName;
+        $imagePath = $imageFile->storeAs($storagePath, $fileName);
+        $post->featured_image = Storage::url($imagePath);
     }
 
     return redirect()->route('post.index')->with('success', 'Post updated successfully.');
