@@ -51,15 +51,15 @@ class HomeController extends Controller
     }
 
     /**
-     * Show the gallery resource.
+     * Show the about page.
      */
-    public function gallery()
+    public function about()
     {
-        //
+        return view('front.pages.about');
     }
 
     /**
-     * Show the contact-us resource.
+     * Show the contact-us page.
      */
     public function contact()
     {
