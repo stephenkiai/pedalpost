@@ -67,10 +67,12 @@
             <!-- Post navigation-->
             <nav class="entry-navigation" aria-label="Post navigation">
                 <!-- Link to the previous post -->
-                <a class="entry-navigation-link" href="{{ route('home.single', $previousPost->id) }}">
-                    <i class="ci-arrow-left me-2"></i>
-                    <span class="d-none d-sm-inline">Prev post</span>
-                </a>
+                @if ($previousPost)
+                    <a class="entry-navigation-link" href="{{ route('home.single', $previousPost->id) }}">
+                        <i class="ci-arrow-left me-2"></i>
+                        <span class="d-none d-sm-inline">Prev post</span>
+                    </a>
+                @endif
 
                 <!-- Link to view all posts -->
                 <a class="entry-navigation-link" href="{{ route('home.index') }}">
@@ -79,10 +81,12 @@
                 </a>
 
                 <!-- Link to the next post -->
-                <a class="entry-navigation-link" href="{{ route('home.single', $nextPost->id) }}">
-                    <span class="d-none d-sm-inline">Next post</span>
-                    <i class="ci-arrow-right ms-2"></i>
-                </a>
+                @if ($nextPost)
+                    <a class="entry-navigation-link" href="{{ route('home.single', $nextPost->id) }}">
+                        <span class="d-none d-sm-inline">Next post</span>
+                        <i class="ci-arrow-right ms-2"></i>
+                    </a>
+                @endif
             </nav>
 
 
