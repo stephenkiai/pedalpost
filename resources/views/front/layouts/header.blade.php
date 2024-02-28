@@ -33,7 +33,7 @@
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         <div class="profile-pic">
-                            <img src="{{ url('img/blog/wamoni.jpg') }}" alt="Profile Pic">
+                            <img src="{{ url('img/blog/reshot-bike.svg') }}" alt="Profile Pic">
                         </div>
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
