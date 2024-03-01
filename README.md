@@ -3,10 +3,11 @@
 
 ```
 PedalPost is the culmination of my journey as a cyclist and a full-stack 
-software developer. Its a Laravel-based blog platform designed exclusively 
+software developer student at ALX_SE_2023_cohort-12. Its a Laravel-based blog platform designed exclusively 
 for cyclists to share experiences, tips, and insights within the cycling community.
+``````
 Table of Contents
-```
+
 
     Introduction
     Features
@@ -93,3 +94,15 @@ This project is licensed under the MIT License.
 ![PedalPost image](public/images/single-post-2.png)
 ![PedalPost image](public/images/subscriber-dashboard.png)
 ![PedalPost image](public/images/subscriber-my-posts.png)
+![PedalPost image](public/images/responsive-1.png)
+![PedalPost image](public/images/responsive-2.png)
+![PedalPost image](public/images/responsive-3.png)
+![PedalPost image](public/images/responsive-4.png)
+![PedalPost image](public/images/responsive-5.png)
+![PedalPost image](public/images/responsive-6.png)
+![PedalPost image](public/images/responsive-7.png)
+![PedalPost image](public/images/responsive-8.png)
+![PedalPost image](public/images/responsive-9.png)
+![PedalPost image](public/images/responsive-10.png)
+![PedalPost image](public/images/responsive-11.png)
+![PedalPost image](public/images/responsive-12.png)
