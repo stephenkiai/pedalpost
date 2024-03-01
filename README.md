@@ -1,8 +1,8 @@
 # PedalPost: A Blog for Cyclists
-![PedalPost image](images/home-1.png)
-![PedalPost image](images/home-2.png)
-![PedalPost image](images/home-3.png)
-![PedalPost image](images/home-footer.png)
+![PedalPost image](public/images/home-1.png)
+![PedalPost image](public/images/home-2.png)
+![PedalPost image](public/images/home-3.png)
+![PedalPost image](public/images/home-footer.png)
 
 ```
 PedalPost is the culmination of my journey as a cyclist and a full-stack software developer. Its a Laravel-based blog platform designed exclusively for cyclists to share experiences, tips, and insights within the cycling community.
@@ -15,9 +15,9 @@ Table of Contents
     Contributing
     License
 ```
-![PedalPost image](images/single-post-1.png)
-![PedalPost image](images/single-post-2.png)
-![PedalPost image](images/single-post-3.png)
+![PedalPost image](public/images/single-post-1.png)
+![PedalPost image](public/images/single-post-2.png)
+![PedalPost image](public/images/single-post-3.png)
 
 ## Introduction
 
@@ -31,10 +31,10 @@ Features
     Responsive Design: Access PedalPost from any device, ensuring a consistent experience.
     User Profiles: Customize profiles and showcase your cycling journey.
 ```
-![PedalPost image](images/admin-dashboard.png)
-![PedalPost image](images/admin-my-posts.png)
-![PedalPost image](images/admin-all-posts.png)
-![PedalPost image](images/admin-new-post.png)
+![PedalPost image](public/images/admin-dashboard.png)
+![PedalPost image](public/images/admin-my-posts.png)
+![PedalPost image](public/images/admin-all-posts.png)
+![PedalPost image](public/images/admin-new-post.png)
 
 ## Installation
 
@@ -49,8 +49,8 @@ Features
 --> run "php artisan migrate" to create db tables
 --> run "php artisan serve" 
 ```
-![PedalPost image](images/admin-category-list.png)
-![PedalPost image](images/admin-new-category.png)
+![PedalPost image](public/images/admin-category-list.png)
+![PedalPost image](public/images/admin-new-category.png)
 
 ## Usage
 
@@ -73,8 +73,8 @@ Features
     Contribute:
     Share your own experiences, tips, and advice by creating and publishing blog posts.
 ```
-![PedalPost image](images/subscriber-dashboard.png)
-![PedalPost image](images/subscriber-my-posts.png)
+![PedalPost image](public/images/subscriber-dashboard.png)
+![PedalPost image](public/images/subscriber-my-posts.png)
 
 ## Contributing
 
