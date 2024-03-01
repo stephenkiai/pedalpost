@@ -1,5 +1,4 @@
 
-
 <!-- Sidebar-->
 <aside class="col-lg-4 pe-xl-5">
     <!-- Account menu toggler (hidden on screens larger 992px)-->
@@ -9,7 +8,7 @@
         </a>
     </div>
 
-    <!-- Actual menu-->
+    <!-- dashboard menu-->
     <div class="h-100 border-end mb-2">
         <div class="d-lg-block collapse" id="account-menu">
             <div class="bg-secondary p-4">
@@ -17,18 +16,18 @@
             </div>
             <div>
                 <ul class="list-unstyled mb-0">
-                        <li class="border-bottom mb-0">
-                            <a class="nav-link-style d-flex align-items-center px-4 py-3" href="{{ route('dashboard1') }}">
-                                <i class="ci-dollar opacity-60 me-2"></i>Home
-                            </a>
-                        </li>
+                    <li class="border-bottom mb-0">
+                        <a class="nav-link-style d-flex align-items-center px-4 py-3" href="{{ route('dashboard1') }}">
+                            <i class="ci-dollar opacity-60 me-2"></i>Home
+                        </a>
+                    </li>
 
 
                     <!-- link for admin only-->
                     @if(auth()->user()->role === 'admin')
                         <li class="border-bottom mb-0">
                             <a class="nav-link-style d-flex align-items-center px-4 py-3" href="{{ url('') }}">
-                                <i class="ci-dollar opacity-60 me-2"></i>All Users
+                                <i class="ci-dollar opacity-60 me-2"></i>Users
                             </a>
                         </li>
                     @endif
@@ -54,21 +53,23 @@
                         </li>
                     @endif
 
-                        <!--links for the rest of the gang -->
-                        <li class="border-bottom mb-0">
-                            <a class="nav-link-style d-flex align-items-center px-4 py-3" href="{{ route('post.index') }}">
-                                <i class="ci-dollar opacity-60 me-2"></i>My Posts
-                            </a>
-                        </li>
+                    <!--links for the rest of the gang -->
+                    <li class="border-bottom mb-0">
+                        <a class="nav-link-style d-flex align-items-center px-4 py-3" href="{{ route('post.index') }}">
+                            <i class="ci-dollar opacity-60 me-2"></i>My Posts
+                        </a>
+                    </li>
 
-                        <li class="border-bottom mb-0">
-                            <a class="nav-link-style d-flex align-items-center px-4 py-3" href="{{ route('post.create') }}">
-                                <i class="ci-cloud-upload opacity-60 me-2"></i>Add New Post
-                            </a>
-                        </li>
+                    <li class="border-bottom mb-0">
+                        <a class="nav-link-style d-flex align-items-center px-4 py-3" href="{{ route('post.create') }}">
+                            <i class="ci-cloud-upload opacity-60 me-2"></i>Add New Post
+                        </a>
+                    </li>
 
-                    </ul>
+                </ul>
                 <hr>
             </div>
         </div>
+    </div>
 </aside>
+

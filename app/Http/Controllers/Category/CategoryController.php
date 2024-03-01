@@ -9,7 +9,9 @@ use App\Http\Controllers\Controller;
 class CategoryController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * here we retrieve all categories,
+     * count the number of post in each category
+     * pass that data to the frontend
      */
     public function index()
     {
@@ -19,16 +21,21 @@ class CategoryController extends Controller
         return view('front.account.category_list')->with('categories', $categories);
     }
 
+
     /**
-     * Show the form for creating a new resource.
+     * Show the form for creating a new category.
      */
     public function create()
     {
         return view('front.account.new_category');
     }
 
+
     /**
-     * Store a newly created resource in storage.
+     * recieve request from frontend
+     * with category name, validate
+     * create a new category and store in db
+     *
      */
     public function store(Request $request)
     {
@@ -48,6 +55,7 @@ class CategoryController extends Controller
         return redirect()->route('category.index')->with('success', 'Category created successfully!');
 
     }
+    
 
     /**
      * Display the specified resource.
@@ -90,6 +98,10 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        //
-    }
+      // Delete the category
+      $category->delete();
+
+      // Redirect back with a success message
+      return redirect()->back()->with('success', 'Category deleted successfully');
+  }
 }

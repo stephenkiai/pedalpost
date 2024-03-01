@@ -19,7 +19,7 @@ class PostController extends Controller
         // Retrieve the authenticated user
         $user = Auth::user();
 
-        // Retrieve blog posts belonging to the logged-in user
+        // Retrieve posts belonging to the logged-in user
         $posts = Post::where('user_id', auth()->id())->paginate(5);
         //dd($posts);
 

@@ -1,41 +1,38 @@
 @extends('front.account.layouts.app')
 
 @section('content')
-
     <section class="col-lg-8 pt-lg-4 pb-4 mb-4">
         <!-- Title-->
         <div class="pt-2 px-4 ps-lg-0 pe-xl-5">
             <div class="d-sm-flex flex-wrap justify-content-between align-items-center border-bottom mb-4">
                 <h2 class="h3 py-2 me-2 text-center text-sm-start">New Post</h2>
-
             </div>
         </div>
 
         <!--error display-->
-    @if ($errors->any())
-    <div class="alert alert-danger">
-        <ul class="list-group">
-            @foreach ($errors->all() as $error )
-            <li class="list-group-item text-danger">
-                {{ $error }}
-            </li>
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul class="list-group">
+                    @foreach ($errors->all() as $error )
+                    <li class="list-group-item text-danger">
+                        {{ $error }}
+                    </li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
 
-            @endforeach
-        </ul>
-    </div>
-    @endif
 
-
-        <!--post form-->
+        <!--new post form-->
         <form action="{{ route('post.store', ) }}" method="POST"  enctype="multipart/form-data">
             @csrf
+
             <div class="card">
                 <div class="card-body">
                     <div class="col-md-9">
                         <div class="mb-3">
                             <label class="form-label">post title</label>
                             <input type="text" class="form-control" name="post_title" placeholder="Enter post title">
-
                         </div>
 
                         <div class="mb-3">
@@ -65,8 +62,7 @@
 
                         <div class="mb-3">
                             <label class="form-label">Category Id(select category to autofill)</label>
-                            <input class="form-control" name="category_id" rows="6" id="category_id" placeholder="Category id">
-                        </input>
+                            <input class="form-control" name="category_id" rows="6" id="category_id" placeholder="Category id"></input>
                         </div>
 
                         <div class="mb-3">
@@ -76,61 +72,63 @@
 
                         <div class="image_holder mb-2" style="max-width: 250px">
                                 <img src="" alt="" class="img-thumbnail" id="image_preview">
+                        </div>
+                        <button type="submit" class="btn btn-accent">Save post</button>
                     </div>
-                    <button type="submit" class="btn btn-accent">Save post</button>
-
                 </div>
             </div>
-
         </form>
-
-        <script>
-            // Get select element
-            const postCategorySelect = document.getElementById('post_category');
-            // Get input element
-            const categoryIdInput = document.getElementById('category_id');
-
-            // Event listener to the select element
-            postCategorySelect.addEventListener('change', function() {
-                // Set value of input element to the selected category ID
-                categoryIdInput.value = this.value;
-            });
-
-            //image preview
-            document.addEventListener('DOMContentLoaded', function() {
-                const fileInput = document.getElementById('featured_image_input');
-                const imagePreview = document.getElementById('image_preview');
-
-                if (fileInput && imagePreview) {
-                    fileInput.addEventListener('change', function() {
-                        const file = this.files[0];
-                        if (file) {
-                            const reader = new FileReader();
-                            reader.onload = function(e) {
-                                imagePreview.src = e.target.result;
-                            };
-                            reader.readAsDataURL(file);
-                        } else {
-                            imagePreview.src = '';
-                        }
-                    });
-                } else {
-                    console.error('File input or image preview element not found.');
-                }
-            });
-        </script>
 
     </section>
 @endsection
 
 @section("scripts")
-<!--call method to display ckeditor-->
-<script>
-    ClassicEditor
-        .create( document.querySelector( '#post_textarea' ) )
-        .catch( error => {
-            console.error( error );
-        } );
-</script>
+
+    <script>
+        //call method to display ckeditor
+        ClassicEditor
+            .create( document.querySelector( '#post_textarea' ) )
+            .catch( error => {
+                console.error( error );
+            } );
+        //end of ckeditor call method
+
+        //function to fill-out category_id automatically after category is selected
+        // Get select element
+        const postCategorySelect = document.getElementById('post_category');
+        // Get input element
+        const categoryIdInput = document.getElementById('category_id');
+
+        // Event listener to the select element
+        postCategorySelect.addEventListener('change', function() {
+            // Set value of input element to the selected category ID
+            categoryIdInput.value = this.value;
+        });
+        //end of category_id auto fill
+
+        //image preview function
+        document.addEventListener('DOMContentLoaded', function() {
+            const fileInput = document.getElementById('featured_image_input');
+            const imagePreview = document.getElementById('image_preview');
+
+            if (fileInput && imagePreview) {
+                fileInput.addEventListener('change', function() {
+                    const file = this.files[0];
+                    if (file) {
+                        const reader = new FileReader();
+                        reader.onload = function(e) {
+                            imagePreview.src = e.target.result;
+                        };
+                        reader.readAsDataURL(file);
+                    } else {
+                        imagePreview.src = '';
+                    }
+                });
+            } else {
+                console.error('File input or image preview element not found.');
+            }
+        });
+        //end of image preview
+    </script>
 
 @endsection
