@@ -94,6 +94,9 @@ This project is licensed under the MIT License.
 ![PedalPost image](public/images/single-post-2.png)
 ![PedalPost image](public/images/subscriber-dashboard.png)
 ![PedalPost image](public/images/subscriber-my-posts.png)
+
+## Responsive to all size screens
+
 ![PedalPost image](public/images/responsive-1.png)
 ![PedalPost image](public/images/responsive-2.png)
 ![PedalPost image](public/images/responsive-3.png)
