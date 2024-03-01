@@ -6,6 +6,7 @@ PedalPost is the culmination of my journey as a cyclist and a full-stack
 software developer. Its a Laravel-based blog platform designed exclusively 
 for cyclists to share experiences, tips, and insights within the cycling community.
 Table of Contents
+```
 
     Introduction
     Features
@@ -13,7 +14,7 @@ Table of Contents
     Usage
     Contributing
     License
-```
+
 
 ## Introduction
 
