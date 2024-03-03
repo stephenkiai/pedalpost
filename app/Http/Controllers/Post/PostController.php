@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Post;
 
 use App\Models\Post;
+use App\Models\Comment;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -12,7 +13,7 @@ use Illuminate\Support\Facades\Storage;
 class PostController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * returns all post by user to the dashboard
      */
     public function index()
     {
@@ -38,7 +39,7 @@ class PostController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Show the form for creating a new post in dashboard
      */
     public function create()
     {
@@ -48,7 +49,7 @@ class PostController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a newly created post in storage.
      */
     public function store(Request $request)
     {
@@ -89,7 +90,7 @@ class PostController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Display the specified post.
      */
     public function show(Post $post)
     {

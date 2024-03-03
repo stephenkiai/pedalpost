@@ -24,7 +24,7 @@
                         <article>
                             <a class="blog-entry-thumb mb-3" href="{{ route('home.single', $post->id) }}">
                                 <span class="blog-entry-meta-label fs-sm">
-                                    <i class="ci-time"></i>{{ $post->created_at->format('M d') }}
+                                    <i class="ci-time"></i>{{ $post->created_at->format('M d,Y') }}
                                 </span>
                                 <img src="{{ asset($post->featured_image) }}" alt="post image">
                             </a>
@@ -38,7 +38,7 @@
 
                                 <a class="blog-entry-meta-link fs-sm text-nowrap ms-3 pt-1" href="
                                     {{ route('post.show', $post->id) }}#comments">
-                                    <i class="ci-message"></i>
+                                    <i class="ci-message"></i>{{ $post->comments_count }}
                                 </a>
                             </div>
 
@@ -91,10 +91,10 @@
                                             {{ $post->user->name }}
                                         </a>
                                         <div class="ms-auto text-nowrap">
-                                            <a class="blog-entry-meta-link text-nowrap" href="#">{{ $post->created_at->format('M d') }}</a>
+                                            <a class="blog-entry-meta-link text-nowrap" href="#">{{ $post->created_at->format('M d,Y') }}</a>
                                             <span class="blog-entry-meta-divider mx-2"></span>
                                             <a class="blog-entry-meta-link text-nowrap" href="{{ route('home.single', $post->id) }}#comments">
-                                                <i class="ci-message"></i>56
+                                                <i class="ci-message"></i>{{ $post->comments_count }}
                                             </a>
                                         </div>
                                     </div>
@@ -128,7 +128,7 @@
                     </nav>
 
                 </section>
-                
+
                 <aside class="col-lg-4">
 
 

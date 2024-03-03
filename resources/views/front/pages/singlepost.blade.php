@@ -14,9 +14,26 @@
             </div>
         </div>
 
+
         <div class="container pb-5 mb-2 mb-md-4" style="padding-top: 80px;">
             <div class="row pt-5 mt-md-2">
                 <section class="col-lg-8">
+
+                    <!--success display -->
+                    @if (session('success'))
+                        <div id="successMessage" class="alert alert-success">
+                            {{ session('success') }}
+                        </div>
+
+                        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+                        <script>
+                            // animation and set timeout
+                            setTimeout(function() {
+                                $('#successMessage').fadeOut('slow');
+                            }, 4000); // 4 milliseconds
+                        </script>
+                    @endif
+
                     <!-- single Post view-->
                     <div class="d-flex flex-wrap justify-content-between align-items-center pb-4 mt-n1">
                         <div class="d-flex align-items-center fs-sm mb-2">
@@ -29,7 +46,7 @@
 
                         <div class="fs-sm mb-2">
                             <a class="blog-entry-meta-link text-nowrap" href="#comments" data-scroll>
-                                <i class="ci-message"></i>3
+                                <i class="ci-message"></i>{{ $totalComments }}
                             </a>
                         </div>
                     </div>
@@ -95,7 +112,82 @@
                             </a>
                         @endif
                     </nav>
+
+
+                    <!--comments section-->
+                    <div class="pt-2 mt-5" id="comments">
+                        <h2 class="h4">Comments<span class="badge bg-secondary fs-sm text-body align-middle ms-2">{{ $totalComments }}</span></h2>
+
+                        @foreach($comments as $comment)
+                            <!-- Comment -->
+                            <div class="d-flex align-items-start py-4 border-bottom">
+                                <img class="rounded-circle" src="" width="50" alt="pic">
+                                <div class="ps-3">
+                                    <div class="d-flex justify-content-between align-items-center mb-2">
+                                        <h6 class="fs-md mb-0">{{ $comment->user->name }}</h6>
+
+                                    </div>
+                                    <p class="fs-md mb-1">{{ $comment->content }}</p>
+
+                                    <span class="fs-ms text-muted">
+                                        <i class="ci-time align-middle me-2"></i>{{ $comment->created_at->format('M d, Y') }}
+
+                                        <!-- Reply link -->
+                                        <a class="reply-link nav-link-style fs-sm fw-medium" href="#"><i class="ci-reply me-2"></i>Reply</a>
+
+                                        <!-- Display delete button for the comment -->
+                                        <form action="{{ route('comments.delete', $comment->id) }}" method="POST">
+                                            @csrf
+                                            @method('HEAD')
+                                            <button type="submit" class="btn btn-danger btn-sm custom-btn">Delete</button>
+                                        </form>
+                                    </span>
+
+                                    <!-- Comment Replies -->
+                                    @foreach($comment->replies as $reply)
+                                        <div class="d-flex align-items-start border-top pt-4 mt-4">
+                                            <img class="rounded-circle" src="" width="50" alt="pic">
+                                            <div class="ps-3">
+                                                <div class="d-flex justify-content-between align-items-center mb-2">
+                                                    <h6 class="fs-md mb-0">{{ $reply->user->name }}</h6>
+                                                </div>
+                                                <p class="fs-md mb-1">{{ $reply->content }}</p>
+                                                <span class="fs-ms text-muted"><i class="ci-time align-middle me-2"></i>{{ $reply->created_at->format('M d, Y') }}</span>
+                                            </div>
+                                        </div>
+                                    @endforeach
+
+                                </div>
+                            </div>
+                        @endforeach
+
+                        <!-- Post comment form -->
+                        <div class="card border-0 shadow mt-2 mb-4">
+                            <div class="card-body">
+                                <div class="d-flex align-items-start">
+                                    @auth <!-- Check if the user is authenticated -->
+                                        <img class="rounded-circle" src="" width="50" alt="pic">
+                                    @else
+                                        <img class="rounded-circle" src="{{ url('img/blog/reshot-bike.svg') }}" width="50" alt="img">
+                                    @endauth
+                                    <form class="w-100 needs-validation ms-3" action="{{ route('comments.store', ) }}" method="POST" novalidate>
+                                        @csrf
+                                        <div class="mb-3">
+                                            <input type="hidden" name="post_id" value="{{ $post->id }}">
+                                            <input type="hidden" name="parent_comment_id" value="{{ $post->parent_comment_id }}">
+                                            <textarea class="form-control" name="content" rows="4" placeholder="Write comment..." required></textarea>
+                                            <div class="invalid-feedback">Please write your comment.</div>
+                                        </div>
+                                        <button class="btn btn-primary btn-sm" type="submit">Post comment</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
                 </section>
+
 
                 <aside class="col-lg-4">
 
@@ -179,4 +271,10 @@
             </div>
         </div>
     </main>
+@endsection
+
+@section('script')
+
+
+
 @endsection

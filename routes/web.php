@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Author\AuthorController;
 use App\Http\Controllers\Editor\EditorController;
 use App\Http\Controllers\Category\CategoryController;
+use App\Http\Controllers\Comments\CommentController;
 use App\Http\Controllers\Contributor\ContributorController;
 use App\Http\Controllers\GuestAuthor\GuestAuthorController;
 
@@ -65,6 +66,12 @@ Route::middleware('auth')->group(function () {
     Route::get('/categories/{category}/edit', [CategoryController::class, 'edit'])->name('category.edit');
     Route::put('/categories/{category}', [CategoryController::class, 'update'])->name('category.update');
     Route::post('/categories/{category}/delete', [CategoryController::class, 'destroy'])->name('category.delete');
+
+
+    Route::get('/comments', [CommentController::class, 'index'])->name('comments.index');
+    Route::get('/comments/new', [CommentController::class, 'create'])->name('comments.create');
+    Route::post('/save-comment', [CommentController::class, 'store'])->name('comments.store');
+    Route::get('/comments/{comment}/delete', [CommentController::class, 'destroy'])->name('comments.delete');
 });
 
 

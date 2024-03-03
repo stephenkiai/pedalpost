@@ -3,24 +3,30 @@
 namespace App\Http\Controllers\Home;
 
 use App\Models\Post;
+use App\Models\Comment;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 class HomeController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Display a listing of the posts data.
      */
     public function index()
     {
         //retrieve posts for featured post section
-        $featuredPosts = Post::inRandomOrder()->limit(3)->get();
+        $featuredPosts = Post::withCount('comments')->inRandomOrder()->limit(3)->get();
         //dd($featuredPosts);
 
         // Paginate posts.all
-        $posts = Post::paginate(10);
+        $posts = Post::withCount('comments')->paginate(10);
 
-        return view('front.home')->with('featuredPosts', $featuredPosts)->with('posts', $posts);
+        //dd($posts);
+        return view('front.home', [
+            'featuredPosts' => $featuredPosts,
+            'posts' => $posts,
+
+        ]);
     }
 
     /**
@@ -37,11 +43,19 @@ class HomeController extends Controller
         // Retrieve next post
         $nextPost = Post::where('id', '>', $post->id)->orderBy('id', 'asc')->first();
 
-        // Pass the everything to the view
+        // Retrieve comments for the current post
+        $comments = Comment::where('post_id', $post->id)->get();
+
+        // Retrieve total number of comments for the post
+        $totalComments = $comments->count();
+
+        // Pass everything to the view
         return view('front.pages.singlepost', [
             'post' => $post,
             'previousPost' => $previousPost,
             'nextPost' => $nextPost,
+            'comments' => $comments,
+            'totalComments' => $totalComments,
         ]);
 
         // Retrieve post using the ID

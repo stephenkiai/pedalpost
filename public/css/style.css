@@ -31,3 +31,10 @@
    border-top: 0;
    border-bottom: 0.3em solid;
  }
+
+
+ /* Custom button style in comment section*/
+.custom-btn {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+}
